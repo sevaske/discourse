@@ -16,10 +16,9 @@ class SignerTest extends TestCase
     }
 
     /**
-     * Ensure that the signer generates a correct HMAC-SHA256 signature
-     * for a given payload and secret.
+     * It generates the expected HMAC-SHA256 signature for a payload.
      */
-    public function test_sign_generation(): void
+    public function test_generates_expected_signature(): void
     {
         $signature = $this->signer->sign('payload');
 
@@ -27,10 +26,9 @@ class SignerTest extends TestCase
     }
 
     /**
-     * Ensure that validate() returns true when a correct signature
-     * is provided for a given payload.
+     * It validates a payload when the correct signature is provided.
      */
-    public function test_valid(): void
+    public function test_validates_correct_signature(): void
     {
         $valid = $this->signer->validate(
             'b82fcb791acec57859b989b430a826488ce2e479fdf92326bd0a2e8375a42ba4',
@@ -41,10 +39,9 @@ class SignerTest extends TestCase
     }
 
     /**
-     * Ensure that validate() returns false when an incorrect signature
-     * is provided for a given payload.
+     * It fails validation when an incorrect signature is provided.
      */
-    public function test_invalid(): void
+    public function test_rejects_incorrect_signature(): void
     {
         $valid = $this->signer->validate(
             'invalid-signature',
