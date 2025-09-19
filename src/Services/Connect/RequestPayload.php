@@ -48,7 +48,7 @@ class RequestPayload
      *
      * @throws DiscourseException
      */
-    public function getNonce(): string
+    public function nonce(): string
     {
         return (string) $this->get('nonce');
     }
@@ -58,7 +58,7 @@ class RequestPayload
      *
      * @throws DiscourseException
      */
-    public function getReturnUrl(): string
+    public function returnUrl(): string
     {
         return (string) $this->get('return_sso_url');
     }

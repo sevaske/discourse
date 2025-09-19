@@ -20,8 +20,8 @@ class RequestPayloadTest extends TestCase
         $instance = new RequestPayload($payload);
 
         $this->assertSame($params, $instance->all());
-        $this->assertSame($params['nonce'], $instance->getNonce());
-        $this->assertSame($params['return_sso_url'], $instance->getReturnUrl());
+        $this->assertSame($params['nonce'], $instance->nonce());
+        $this->assertSame($params['return_sso_url'], $instance->returnUrl());
     }
 
     public function test_it_throws_exception_on_invalid_base64(): void
@@ -48,7 +48,7 @@ class RequestPayloadTest extends TestCase
 
         $instance = new RequestPayload($payload);
 
-        $this->assertSame('qwerty', $instance->getNonce());
-        $this->assertSame('https://example.com/sso', $instance->getReturnUrl());
+        $this->assertSame('qwerty', $instance->nonce());
+        $this->assertSame('https://example.com/sso', $instance->returnUrl());
     }
 }
