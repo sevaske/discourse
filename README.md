@@ -1,3 +1,7 @@
+[![Packagist](https://img.shields.io/packagist/v/sevaske/discourse.svg?style=flat-square)](https://packagist.org/packages/sevaske/discourse)
+[![PHPUnit](https://github.com/sevaske/discourse/actions/workflows/tests.yml/badge.svg)](https://github.com/sevaske/discourse/actions/workflows/tests.yml)
+[![PHPStan](https://github.com/sevaske/discourse/actions/workflows/phpstan.yml/badge.svg)](https://github.com/sevaske/discourse/actions/workflows/phpstan.yml)
+
 # Discourse Connect PHP Library
 
 A lightweight PHP (^7.4) library for integrating with **Discourse Connect** (formerly Discourse SSO).  
