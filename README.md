@@ -40,17 +40,12 @@ if (! $signer->validate($sig, $sso)) {
 }
 
 $request = new RequestPayload($sso);
-$request->nonce();
-$request->returnUrl();
-
 $response = (new ResponsePayload($signer))->build(
     $request->nonce(), 
     'my-user-id', 
     'myemail@mywebsite.com',
-    [
+    [ // optional params
         'name' => 'Naruto Uzumaki',
-        'username' => 'konohaman',
-        // ... other extra parameters
     ]
 );
 
