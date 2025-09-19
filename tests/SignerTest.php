@@ -7,13 +7,21 @@ use Sevaske\Discourse\Services\Signer;
 
 class SignerTest extends TestCase
 {
+    private Signer $signer;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->signer = new Signer('secret');
+    }
+
     /**
      * Ensure that the signer generates a correct HMAC-SHA256 signature
      * for a given payload and secret.
      */
     public function test_sign_generation(): void
     {
-        $signature = $this->signer()->sign('payload');
+        $signature = $this->signer->sign('payload');
 
         $this->assertEquals('b82fcb791acec57859b989b430a826488ce2e479fdf92326bd0a2e8375a42ba4', $signature);
     }
@@ -24,7 +32,7 @@ class SignerTest extends TestCase
      */
     public function test_valid(): void
     {
-        $valid = $this->signer()->validate(
+        $valid = $this->signer->validate(
             'b82fcb791acec57859b989b430a826488ce2e479fdf92326bd0a2e8375a42ba4',
             'payload'
         );
@@ -38,19 +46,11 @@ class SignerTest extends TestCase
      */
     public function test_invalid(): void
     {
-        $valid = $this->signer()->validate(
+        $valid = $this->signer->validate(
             'invalid-signature',
             'payload'
         );
 
         $this->assertFalse($valid);
-    }
-
-    /**
-     * Helper method to instantiate a Signer with the test secret.
-     */
-    private function signer(): Signer
-    {
-        return new Signer('secret');
     }
 }
