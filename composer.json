@@ -5,7 +5,11 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Sevaske\\Discourse\\": "src/",
+            "Sevaske\\Discourse\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Sevaske\\Discourse\\Tests\\": "tests/"
         }
     },
@@ -24,5 +28,9 @@
     "scripts": {
         "test": "phpunit --testdox",
         "stan": "phpstan analyse"
-    }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
 }
