@@ -9,6 +9,7 @@ use Sevaske\Discourse\Api\BadgesApi;
 use Sevaske\Discourse\Api\CategoriesApi;
 use Sevaske\Discourse\Api\GroupsApi;
 use Sevaske\Discourse\Api\InvitesApi;
+use Sevaske\Discourse\Api\NotificationsApi;
 use Sevaske\Discourse\Traits\Macroable;
 use Sevaske\Discourse\Api\ApiService;
 use Sevaske\Discourse\Api\PostsApi;
@@ -52,6 +53,11 @@ class Api
     public function invites(): InvitesApi
     {
         return $this->resolveApiService(InvitesApi::class);
+    }
+
+    public function notifications(): NotificationsApi
+    {
+        return $this->resolveApiService(NotificationsApi::class);
     }
 
     public function posts(): PostsApi

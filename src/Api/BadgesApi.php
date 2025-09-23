@@ -21,7 +21,7 @@ class BadgesApi extends ApiService
 
     public function update(int $id, string $name, int $badgeTypeId): DiscourseResponseContract
     {
-        return $this->request('POST', "/admin/badges/{$id}.json", [
+        return $this->request('PUT', "/admin/badges/{$id}.json", [
             'name' => $name,
             'badge_type_id' => $badgeTypeId
         ]);
