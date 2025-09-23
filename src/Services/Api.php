@@ -9,7 +9,6 @@ use Sevaske\Discourse\Api\CategoriesApi;
 use Sevaske\Discourse\Api\GroupsApi;
 use Sevaske\Discourse\Api\InvitesApi;
 use Sevaske\Discourse\Traits\Macroable;
-use Sevaske\Discourse\Api\AdminApi;
 use Sevaske\Discourse\Api\ApiService;
 use Sevaske\Discourse\Api\PostsApi;
 use Sevaske\Discourse\Api\SiteApi;
@@ -32,11 +31,6 @@ class Api
         $this->client = $client;
         $this->requestFactory = $requestFactory;
         $this->streamFactory = $streamFactory;
-    }
-
-    public function admin(): AdminApi
-    {
-        return $this->resolveApiService(AdminApi::class);
     }
 
     public function categories(): CategoriesApi
