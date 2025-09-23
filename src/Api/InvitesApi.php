@@ -28,9 +28,4 @@ class InvitesApi extends ApiService
             'expires_at' => $expiresAt
         ]);
     }
-
-    public function basicInfo(): DiscourseResponseContract
-    {
-        return $this->request('GET', '/site/basic-info.json');
-    }
 }

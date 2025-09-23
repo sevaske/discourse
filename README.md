@@ -69,6 +69,118 @@ $response = $api->request('GET', '/categories.json', [
 ]);
 ```
 
+#### API References
+
+###### Badges
+
+```php
+$api->badges()->list();
+$api->badges()->create(string $name, int $badgeTypeId);
+$api->badges()->update(int $id, string $name, int $badgeTypeId);
+$api->badges()->delete(int $id);
+
+```
+
+###### Categories
+
+```php
+$api->categories()->list(?bool $includeSubcategories = null);
+$api->categories()->get(int $id);
+$api->categories()->create(string $name, array $extra = []);
+$api->categories()->update(int $id, string $name, array $extra = []);
+```
+
+###### Groups
+
+```php
+$api->groups()->list();
+$api->groups()->get(int|string $nameOrId, bool $byId = true);
+$api->groups()->create(string $name, array $extra = []);
+$api->groups()->update(int $id, string $name, array $extra = []);
+$api->groups()->delete(int $id);
+
+$api->groups()->getMembers(int $groupId);
+$api->groups()->addMembers(int $groupId, array $usernames);
+$api->groups()->removeMembers(int $groupId, array $usernames);
+```
+
+###### Invites
+
+```php
+$api->invites()->create(
+    string $email,
+    bool $skipEmail = false,
+    ?string $customMessage = null,
+    ?int $maxRedemptionsAllowed = 1,
+    ?int $topicId = null,
+    ?string $groupIds = null,
+    ?string $groupNames = null,
+    ?string $expiresAt = null
+);
+```
+
+##### Notifications
+
+```php
+$api->notifications()->list();
+$api->notifications()->read(?int $id); // null to read all
+```
+
+##### Posts
+
+```php
+$api->posts()->latest(?int $before = null);
+$api->posts()->get(int $id);
+$api->posts()->create(array $data);
+$api->posts()->update(int $id, string $raw, ?string $editReason = null);
+$api->posts()->delete(int $id);
+
+$api->posts()->lock(int $id);
+$api->posts()->unlock(int $id);
+
+$api->posts()->replies(int $id);
+$api->posts()->action(int $postId, int $postActionTypeId, ?bool $flagTopic = null);
+```
+
+##### Users
+
+```php
+$api->users()->list(
+    ?string $flag = null,   // "active", "new", "staff", "suspended", "blocked", "suspect"
+    ?string $order = null,
+    ?bool $asc = null,
+    ?int $page = null,
+    ?bool $showEmails = null,
+    ?bool $stats = null,
+    ?string $email = null,
+    ?string $ip = null
+);
+
+$api->users()->getById(int $id);
+$api->users()->getByUsername(string $username);
+$api->users()->getByExternalId(string $externalId);
+
+$api->users()->create(string $name, string $email, string $password, string $username, array $extra = []);
+$api->users()->update(string $username, string $name, array $extra);
+
+$api->users()->changePassword(string $token, string $username, string $password);
+$api->users()->sendPasswordResetEmail(string $login);
+
+$api->users()->delete(int $id, ?bool $deletePosts = null, ?bool $blockEmail = null, ?bool $blockUrls = null, ?bool $blockIp = null);
+
+$api->users()->activate(int $id);
+$api->users()->deactivate(int $id);
+$api->users()->logoutUser(int $id);
+
+$api->users()->badges(string $username);
+```
+
+##### Site
+
+```php
+$api->site()->info();
+$api->site()->basicInfo();
+```
 
 #### Extending with Macros
 
