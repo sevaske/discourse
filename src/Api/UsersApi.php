@@ -6,6 +6,34 @@ use Sevaske\Discourse\Contracts\DiscourseResponseContract;
 
 class UsersApi extends ApiService
 {
+    public function list(
+        ?string $flag = null, // "active" "new" "staff" "suspended" "blocked" "suspect"
+        ?string $order = null,
+        $asc = null,
+        ?int $page = null,
+        ?bool $showEmails = null,
+        ?bool $stats = null,
+        ?string $email = null,
+        ?string $ip = null
+    ): DiscourseResponseContract
+    {
+        if (is_bool($asc)) {
+            $asc = $asc ? 'true' : 'false';
+        }
+
+        $uri = $flag ? "/admin/users/list/{$flag}.json" : '/admin/users.json';
+
+        return $this->request('GET', $uri, [
+            'order' => $order,
+            'asc' => $asc,
+            'page' => $page,
+            'show_emails' => $showEmails,
+            'stats' => $stats,
+            'email' => $email,
+            'ip' => $ip
+        ]);
+    }
+
     public function getByUsername(string $username): DiscourseResponseContract
     {
         return $this->request('GET', "/u/{$username}.json");
@@ -37,6 +65,21 @@ class UsersApi extends ApiService
         return $this->request('PUT', '/u/'.$username.'.json', [
             'name' => $name,
             ...$extra,
+        ]);
+    }
+
+    public function changePassword(string $token, string $username, string $password): DiscourseResponseContract
+    {
+        return $this->request('PUT', "/users/password-reset/{$token}.json", [
+            'username' => $username,
+            'password' => $password,
+        ]);
+    }
+
+    public function sendPasswordResetEmail(string $login)
+    {
+        return $this->request('POST', '/session/forgot_password.json', [
+            'login' => $login,
         ]);
     }
 
