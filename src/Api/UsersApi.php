@@ -1,0 +1,36 @@
+<?php
+
+namespace Sevaske\Discourse\Api;
+
+use Sevaske\Discourse\Contracts\DiscourseResponseContract;
+
+class UsersApi extends ApiService
+{
+    public function get(string $usernameOrExternalId, bool $byExternalId = false): DiscourseResponseContract
+    {
+        if ($byExternalId) {
+            return $this->request('GET', "/u/by-external/{$usernameOrExternalId}.json");
+        }
+
+        return $this->request('GET', "/u/{$usernameOrExternalId}.json");
+    }
+
+    public function create(string $name, string $email, string $password, string $username, array $extra = []): DiscourseResponseContract
+    {
+        return $this->request('POST', '/users.json', [
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'username' => $username,
+            ...$extra,
+        ]);
+    }
+
+    public function update(string $username, string $name, array $extra): DiscourseResponseContract
+    {
+        return $this->request('PUT', '/u/'.$username.'.json', [
+            'name' => $name,
+            ...$extra,
+        ]);
+    }
+}
