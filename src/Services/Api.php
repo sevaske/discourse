@@ -5,6 +5,7 @@ namespace Sevaske\Discourse\Services;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use Sevaske\Discourse\Api\BadgesApi;
 use Sevaske\Discourse\Api\CategoriesApi;
 use Sevaske\Discourse\Api\GroupsApi;
 use Sevaske\Discourse\Api\InvitesApi;
@@ -31,6 +32,11 @@ class Api
         $this->client = $client;
         $this->requestFactory = $requestFactory;
         $this->streamFactory = $streamFactory;
+    }
+
+    public function badges(): BadgesApi
+    {
+        return $this->resolveApiService(BadgesApi::class);
     }
 
     public function categories(): CategoriesApi

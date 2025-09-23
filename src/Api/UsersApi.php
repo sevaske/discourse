@@ -70,4 +70,9 @@ class UsersApi extends ApiService
     {
         return $this->request('POST', "/admin/users/{$id}/log_out.json");
     }
+
+    public function badges(string $username): DiscourseResponseContract
+    {
+        return $this->request('GET', "/user-badges/{$username}.json");
+    }
 }
