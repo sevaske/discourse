@@ -85,7 +85,7 @@ Api::macro('ping', function () {
 
 $api = new Api($client, $httpFactory, $httpFactory);
 $api->ping(); // "pong"
-
+```
 
 ### Connect (SSO)
 
@@ -119,7 +119,7 @@ $response = (new ResponsePayload($signer))->build(
     ]
 );
 
-$redirectUrl = $request->returnUrl().'?'.$response;
+$redirectUrl = $request->buildReturnUrl($response);
 ```
 
 ## Running Tests

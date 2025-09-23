@@ -64,6 +64,16 @@ class RequestPayload
     }
 
     /**
+     * Build final return URL with query parameters
+     *
+     * @throws DiscourseException
+     */
+    public function buildReturnUrl(string $responseQuery): string
+    {
+        return $this->returnUrl().'?'.$responseQuery;
+    }
+
+    /**
      * @throws DiscourseException
      */
     protected function requireKey(string $key): void
