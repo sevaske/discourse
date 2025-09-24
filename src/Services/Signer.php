@@ -2,12 +2,14 @@
 
 namespace Sevaske\Discourse\Services;
 
+use Sevaske\Discourse\Contracts\SignerContract;
+
 /**
- * Class responsible for signing and verifying payloads
+ * Class responsible for signing and verifying SSO payloads
  */
-class Signer
+class Signer implements SignerContract
 {
-    private string $secret;
+    protected string $secret;
 
     public function __construct(string $secret)
     {
@@ -25,11 +27,9 @@ class Signer
     /**
      * Validate payload against given signature
      */
-    public function validate(string $signature, string $payload, bool $payloadDecoded = false): bool
+    public function validate(string $signature, string $payload): bool
     {
-        if (! $payloadDecoded) {
-            $payload = urldecode($payload);
-        }
+        $payload = urldecode($payload);
 
         return hash_equals($this->sign($payload), $signature);
     }
