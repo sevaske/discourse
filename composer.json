@@ -22,8 +22,8 @@
         "php": "^7.4||^8.0",
         "ext-json": "*",
         "psr/http-client": "^1.0",
-        "psr/http-message": "^2.0",
-        "psr/http-factory": "^1.1"
+        "psr/http-message": "^1.0||^2.0",
+        "psr/http-factory": "^1.0"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.10",
@@ -37,5 +37,8 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": true
+    "prefer-stable": true,
+    "support": {
+        "source": "https://github.com/sevaske/discourse"
+    }
 }
