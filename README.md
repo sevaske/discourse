@@ -162,15 +162,14 @@ $api->users()->getByExternalId(string $externalId);
 
 $api->users()->create(string $name, string $email, string $password, string $username, array $extra = []);
 $api->users()->update(string $username, string $name, array $extra);
-
-$api->users()->changePassword(string $token, string $username, string $password);
-$api->users()->sendPasswordResetEmail(string $login);
-
 $api->users()->delete(int $id, ?bool $deletePosts = null, ?bool $blockEmail = null, ?bool $blockUrls = null, ?bool $blockIp = null);
 
 $api->users()->activate(int $id);
 $api->users()->deactivate(int $id);
-$api->users()->logoutUser(int $id);
+$api->users()->logout(int $id);
+
+$api->users()->changePassword(string $token, string $username, string $password);
+$api->users()->sendPasswordResetEmail(string $login);
 
 $api->users()->badges(string $username);
 ```

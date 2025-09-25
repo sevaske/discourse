@@ -68,21 +68,6 @@ class UsersApi extends ApiService
         ]);
     }
 
-    public function changePassword(string $token, string $username, string $password): DiscourseResponseContract
-    {
-        return $this->request('PUT', "/users/password-reset/{$token}.json", [
-            'username' => $username,
-            'password' => $password,
-        ]);
-    }
-
-    public function sendPasswordResetEmail(string $login)
-    {
-        return $this->request('POST', '/session/forgot_password.json', [
-            'login' => $login,
-        ]);
-    }
-
     public function delete(
         int $id,
         ?bool $deletePosts = null,
@@ -109,7 +94,7 @@ class UsersApi extends ApiService
         return $this->request('PUT', "/admin/users/{$id}/deactivate.json");
     }
 
-    public function logoutUser($id): DiscourseResponseContract
+    public function logout($id): DiscourseResponseContract
     {
         return $this->request('POST', "/admin/users/{$id}/log_out.json");
     }
@@ -117,5 +102,20 @@ class UsersApi extends ApiService
     public function badges(string $username): DiscourseResponseContract
     {
         return $this->request('GET', "/user-badges/{$username}.json");
+    }
+
+    public function changePassword(string $token, string $username, string $password): DiscourseResponseContract
+    {
+        return $this->request('PUT', "/users/password-reset/{$token}.json", [
+            'username' => $username,
+            'password' => $password,
+        ]);
+    }
+
+    public function sendPasswordResetEmail(string $login)
+    {
+        return $this->request('POST', '/session/forgot_password.json', [
+            'login' => $login,
+        ]);
     }
 }
