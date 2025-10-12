@@ -99,6 +99,7 @@ trait HasAttributes
      * @param  mixed  $offset  The attribute key.
      * @return mixed|null The attribute value, or null if not set.
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->attributes[$offset] ?? null;
